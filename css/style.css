@@ -5,7 +5,7 @@ body {
 }
 body .demo,
 body .demo img,
-body .demo a.hoverable {
+body .demo a {
 	border:				none;
 	outline:			none;
 	text-decoration:	none;
@@ -24,6 +24,12 @@ body .demo {
 body .demo img {
 	display:			inline;
 	height:				588px;
+}
+body .demo a > div {
+	visibility:			hidden;
+}
+body .demo a:hover > div {
+	visibility:			visible;
 }
 
 /* ----- divider -------------------------------- */
@@ -53,6 +59,31 @@ body .demo#demo_02 a.hoverable.odd:hover {
 }
 body .demo#demo_02 a.hoverable.even:hover {
 	background-color:	#000000;
+}
+
+/* ---- demo #03 -------------------------------- */
+body .demo#demo_03 {}
+body .demo#demo_03 a:hover > div.overlay {
+	opacity:			0.4;
+}
+body .demo#demo_03 a.odd:hover > div.overlay {
+	background-color:	#ffffff;
+}
+body .demo#demo_03 a.even:hover > div.overlay {
+	background-color:	#000000;
+}
+body .demo#demo_03 a:hover > div.caption {
+	font-family:		sans-serif;
+	font-size:			16px;
+	font-weight:		bold;
+	text-align:			center;
+	vertical-align:		middle;
+}
+body .demo#demo_03 a.odd:hover > div.caption {
+	color:				#333333;
+}
+body .demo#demo_03 a.even:hover > div.caption {
+	color:				#cccccc;
 }
 
 /* ---------------------------------------------- */

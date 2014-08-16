@@ -28,22 +28,34 @@
 		 *
 		 * other options:
 		 * ==============
-		 *   - "css_class":
+		 *   - "positioned_element_class":
+		 *
 		 *     * Value may contain a string.
 		 *       For each `<area.onhover>`:
 		 *         - 1 absolutely positioned anchor element will be added to the container element.
-		 *           The anchor element will be assigned the css class: "css_class"
+		 *           The anchor element will be assigned the css class: "positioned_element_class"
+		 *
+		 *     * Value may contain an array of strings.
+		 *       For each `<area.onhover>`:
+		 *         - 1 absolutely positioned anchor element will be added to the container element.
+		 *         - For each `options.positioned_element_class`:
+		 *             * 1 div element will be added to the absolutely positioned anchor element.
+		 *               It will be assigned the css class name: `options.positioned_element_class[i]`
+		 *               It will be assigned the css inline style: `z-index: i`
 		 *
 		 *       Additional data can be contained in the DOM element: `area.onhover[i]`:
-		 *         - within loop:
+		 *         - within outer loop:
 		 *             * any css classes (excluding `.onhover`)
 		 *               will be copied to the absolutely positioned anchor element
+		 *         - within inner loop:
+		 *             * if the area element contains the attribute: x-`options.positioned_element_class[i]`,
+		 *               then its value is treated as html content and is inserted into the div element
 		 *
 		 *       example:
-		 *         - "css_class":
-		 *               "hoverable"
+		 *         - "positioned_element_class":
+		 *               ["background-overlay","caption-text"]
 		 *         - area tag:
-		 *               <area shape="rect" coords="0,0,100,100" href="#example" class="onhover odd not-even" />
+		 *               <area shape="rect" coords="0,0,100,100" href="#example" class="onhover odd not-even" x-caption-text="hello world" />
 		 ****************************************
 		 */
 
@@ -51,7 +63,7 @@
 			"image_element"				: false,
 			"image_element_wrapper" 	: false,
 			"image_element_container"	: false,
-			"css_class"					: false,
+			"positioned_element_class"	: false,
 
 			// helpers
 			"wrap_image_element" 		: false
@@ -154,13 +166,39 @@
 				left		= Math.min( coords[0] , coords[2] );
 				top			= Math.min( coords[1] , coords[3] );
 
-				if ( options.css_class ){
-					$a.addClass( options.css_class );
-				}
-				if (typeof css_class === 'string'){
+				if (
+					(css_class) && (typeof css_class === 'string')
+				){
 					css_class = $.trim(css_class);
 					if (css_class !== ''){
 						$a.addClass( css_class );
+					}
+				}
+
+				if ( options.positioned_element_class ){
+					if ( typeof options.positioned_element_class === 'string' ){
+						$a.addClass( options.positioned_element_class );
+					}
+					else if (
+							(typeof options.positioned_element_class === 'object')
+						&&	(typeof options.positioned_element_class.length === 'number')
+					){
+						$.each(options.positioned_element_class, function(i, layer_css_class){
+							var $div, content;
+
+							$div	= $('<div></div>').addClass(layer_css_class);
+							content	= $area.attr('x-' + layer_css_class);
+
+							if (content){
+								$div.html(content);
+							}
+
+							$div
+								.css('cssText','display:block; position:absolute; z-index:' +(i+1)+ '; width:' +width+ 'px; height:' +height+ 'px; left:0px; top:0px;')
+								.attr('href', href)
+								.appendTo( $a )
+							;
+						});
 					}
 				}
 
@@ -169,6 +207,7 @@
 					.attr('href', href)
 					.appendTo( $img_container )
 				;
+
 			});
 		});
 	};

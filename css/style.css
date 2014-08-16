@@ -4,14 +4,23 @@ body {
 	text-align:			center;
 }
 body .demo,
-body .demo img,
-body .demo a {
+/* wrap_image_element=false */
+body .demo > img,
+body .demo > a,
+body .demo > a > div,
+/* wrap_image_element=true */
+body .demo > div > img,
+body .demo > div > a,
+body .demo > div > a > div {
 	border:				none;
 	outline:			none;
 	text-decoration:	none;
 }
 body .demo,
-body .demo img {
+/* wrap_image_element=false */
+body .demo > img,
+/* wrap_image_element=true */
+body .demo > div > img {
 	width:				736px;
 }
 body .demo {
@@ -21,14 +30,23 @@ body .demo {
 	padding:			0px;
 	text-align:			left;
 }
-body .demo img {
+/* wrap_image_element=false */
+body .demo > img,
+/* wrap_image_element=true */
+body .demo > div > img {
 	display:			inline;
 	height:				588px;
 }
-body .demo a > div {
+/* wrap_image_element=false */
+body .demo > a > div,
+/* wrap_image_element=true */
+body .demo > div > a > div {
 	visibility:			hidden;
 }
-body .demo a:hover > div {
+/* wrap_image_element=false */
+body .demo > a:hover > div,
+/* wrap_image_element=true */
+body .demo > div > a:hover > div {
 	visibility:			visible;
 }
 
@@ -44,45 +62,96 @@ body .demo#demo_01 {
 	position:			relative;
 	z-index:			0;	
 }
-body .demo#demo_01 a.hoverable:hover {
+
+/* wrap_image_element=false */
+body .demo#demo_01 > a.hoverable:hover {
 	background-color:	#ffffff;
 	opacity:			0.4;
 }
 
-/* ---- demo #02 -------------------------------- */
-body .demo#demo_02 {}
-body .demo#demo_02 a.hoverable:hover {
+/* wrap_image_element=true */
+/*
+body .demo#demo_01 > div > a.hoverable:hover {
+	background-color:	#ffffff;
 	opacity:			0.4;
 }
-body .demo#demo_02 a.hoverable.odd:hover {
+*/
+
+/* ---- demo #02 -------------------------------- */
+body .demo#demo_02 {}
+/* wrap_image_element=false */
+
+/*
+body .demo#demo_02 > a.hoverable:hover {
+	opacity:			0.4;
+}
+body .demo#demo_02 > a.hoverable.odd:hover {
 	background-color:	#ffffff;
 }
-body .demo#demo_02 a.hoverable.even:hover {
+body .demo#demo_02 > a.hoverable.even:hover {
+	background-color:	#000000;
+}
+*/
+
+/* wrap_image_element=true */
+body .demo#demo_02 > div > a.hoverable:hover {
+	opacity:			0.4;
+}
+body .demo#demo_02 > div > a.hoverable.odd:hover {
+	background-color:	#ffffff;
+}
+body .demo#demo_02 > div > a.hoverable.even:hover {
 	background-color:	#000000;
 }
 
 /* ---- demo #03 -------------------------------- */
 body .demo#demo_03 {}
-body .demo#demo_03 a:hover > div.overlay {
+
+/* wrap_image_element=false */
+/*
+body .demo#demo_03 > a:hover > div.overlay {
 	opacity:			0.4;
 }
-body .demo#demo_03 a.odd:hover > div.overlay {
+body .demo#demo_03 > a.odd:hover > div.overlay {
 	background-color:	#ffffff;
 }
-body .demo#demo_03 a.even:hover > div.overlay {
+body .demo#demo_03 > a.even:hover > div.overlay {
 	background-color:	#000000;
 }
-body .demo#demo_03 a:hover > div.caption {
+body .demo#demo_03 > a:hover > div.caption {
 	font-family:		sans-serif;
 	font-size:			16px;
 	font-weight:		bold;
 	text-align:			center;
-	vertical-align:		middle;
 }
-body .demo#demo_03 a.odd:hover > div.caption {
+body .demo#demo_03 > a.odd:hover > div.caption {
 	color:				#333333;
 }
-body .demo#demo_03 a.even:hover > div.caption {
+body .demo#demo_03 > a.even:hover > div.caption {
+	color:				#cccccc;
+}
+*/
+
+/* wrap_image_element=true */
+body .demo#demo_03 > div > a:hover > div.overlay {
+	opacity:			0.4;
+}
+body .demo#demo_03 > div > a.odd:hover > div.overlay {
+	background-color:	#ffffff;
+}
+body .demo#demo_03 > div > a.even:hover > div.overlay {
+	background-color:	#000000;
+}
+body .demo#demo_03 > div > a:hover > div.caption {
+	font-family:		sans-serif;
+	font-size:			16px;
+	font-weight:		bold;
+	text-align:			center;
+}
+body .demo#demo_03 > div > a.odd:hover > div.caption {
+	color:				#333333;
+}
+body .demo#demo_03 > div > a.even:hover > div.caption {
 	color:				#cccccc;
 }
 

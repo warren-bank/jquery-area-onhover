@@ -191,11 +191,18 @@ jQuery(document).ready(function($){
  *             * if the area element contains the attribute: x-`options.positioned_element_class[i]`,
  *               then its value is treated as html content and is inserted into the div element
  *
+ *             * if html content is to be inserted into the div,
+ *               and the area element contains the attribute: x-`options.positioned_element_class[i]`-valign,
+ *               and its value equals: "middle",
+ *               then the html content is wrapped in html,
+ *               such that it is displayed both vertically and horizontally centered
+ *               within the absolutely positioned element.
+ *
  *       example:
  *         - "positioned_element_class":
  *               ["background-overlay","caption-text"]
  *         - area tag:
- *               <area shape="rect" coords="0,0,100,100" href="#example" class="onhover odd not-even" x-caption-text="hello world" />
+ *               <area shape="rect" coords="0,0,100,100" href="#example" class="onhover odd not-even" x-caption-text="hello world" x-caption-text-valign="middle" />
  ****************************************
 ```
 

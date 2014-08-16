@@ -51,11 +51,18 @@
 		 *             * if the area element contains the attribute: x-`options.positioned_element_class[i]`,
 		 *               then its value is treated as html content and is inserted into the div element
 		 *
+		 *             * if html content is to be inserted into the div,
+		 *               and the area element contains the attribute: x-`options.positioned_element_class[i]`-valign,
+		 *               and its value equals: "middle",
+		 *               then the html content is wrapped in html,
+		 *               such that it is displayed both vertically and horizontally centered
+		 *               within the absolutely positioned element.
+		 *
 		 *       example:
 		 *         - "positioned_element_class":
 		 *               ["background-overlay","caption-text"]
 		 *         - area tag:
-		 *               <area shape="rect" coords="0,0,100,100" href="#example" class="onhover odd not-even" x-caption-text="hello world" />
+		 *               <area shape="rect" coords="0,0,100,100" href="#example" class="onhover odd not-even" x-caption-text="hello world" x-caption-text-valign="middle" />
 		 ****************************************
 		 */
 
@@ -184,12 +191,18 @@
 						&&	(typeof options.positioned_element_class.length === 'number')
 					){
 						$.each(options.positioned_element_class, function(i, layer_css_class){
-							var $div, content;
+							var $div, content, valign;
 
-							$div	= $('<div></div>').addClass(layer_css_class);
-							content	= $area.attr('x-' + layer_css_class);
+							$div			= $('<div></div>').addClass(layer_css_class);
+							content			= $area.attr('x-' + layer_css_class);
 
 							if (content){
+								valign		= $area.attr('x-' + layer_css_class + '-valign');
+
+								if (valign && (valign === 'middle')){
+									content	= '<div style="display:table; width:100%; height:100%;"><div style="display:table-cell; vertical-align:middle; text-align:center;">' + content + '</div></div>';
+								}
+
 								$div.html(content);
 							}
 

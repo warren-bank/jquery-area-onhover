@@ -1,0 +1,58 @@
+body {
+	margin:				0px;
+	padding:			0px;
+	text-align:			center;
+}
+body .demo,
+body .demo img,
+body .demo a.hoverable {
+	border:				none;
+	outline:			none;
+	text-decoration:	none;
+}
+body .demo,
+body .demo img {
+	width:				736px;
+}
+body .demo {
+	display:			block;
+	overflow:			hidden;
+	margin:				0px auto;
+	padding:			0px;
+	text-align:			left;
+}
+body .demo img {
+	display:			inline;
+	height:				588px;
+}
+
+/* ----- divider -------------------------------- */
+body .demo {
+	margin-top:			15px;
+	padding-bottom:		15px;
+	border-bottom:		1px dotted #666666;
+}
+
+/* ---- demo #01 -------------------------------- */
+body .demo#demo_01 {
+	position:			relative;
+	z-index:			0;	
+}
+body .demo#demo_01 a.hoverable:hover {
+	background-color:	#ffffff;
+	opacity:			0.4;
+}
+
+/* ---- demo #02 -------------------------------- */
+body .demo#demo_02 {}
+body .demo#demo_02 a.hoverable:hover {
+	opacity:			0.4;
+}
+body .demo#demo_02 a.hoverable.odd:hover {
+	background-color:	#ffffff;
+}
+body .demo#demo_02 a.hoverable.even:hover {
+	background-color:	#000000;
+}
+
+/* ---------------------------------------------- */

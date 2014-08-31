@@ -1,3 +1,21 @@
+/*
+ * --------------------------------------------------------
+ * script
+ *     name:    jquery.area_onhover.js
+ *     summary: jQuery plugin that creates absolutely positioned anchor elements from image map areas
+ *     url:     https://github.com/warren-bank/jquery-area-onhover
+ * author
+ *     name:    Warren R Bank
+ *     email:   warren.r.bank@gmail.com
+ *     url:     https://github.com/warren-bank
+ * copyright
+ *     notice:  Copyright (c) 2014, Warren Bank
+ * license
+ *     name:    GPLv2
+ *     url:     http://www.gnu.org/licenses/gpl-2.0.txt
+ * --------------------------------------------------------
+ */
+
 (function($){
 
 	$.fn.area_onhover = function(user_options){

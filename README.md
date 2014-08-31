@@ -286,3 +286,8 @@ jQuery(document).ready(function($){
          * the jquery plugin
          * the `<script>` that calls the plugin
          * the `<area>` tags with the css class: "onhover"
+
+## License
+
+  > [GPLv2](http://www.gnu.org/licenses/gpl-2.0.txt)
+  > Copyright (c) 2014, Warren Bank
